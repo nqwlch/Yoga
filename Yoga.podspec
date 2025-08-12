@@ -3,9 +3,9 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-version = "0.78.3"
+version = "0.0.0"
 
-source = { :git => ENV['INSTALL_YOGA_FROM_LOCATION'] || 'https://github.com/facebook/react-native.git' }
+source = { :git => 'https://github.com/nqwlch/Yoga.git' }
 source[:tag] = "v#{version}"
 
 Pod::Spec.new do |spec|
@@ -44,17 +44,14 @@ Pod::Spec.new do |spec|
   # Set this environment variable when *not* using the `:path` option to install the pod.
   # E.g. when publishing this spec to a spec repo.
   source_files = 'yoga/**/*.{cpp,h}'
-  source_files = File.join('ReactCommon/yoga', source_files) if ENV['INSTALL_YOGA_WITHOUT_PATH_OPTION']
   spec.source_files = source_files
   spec.header_mappings_dir = 'yoga'
 
   public_header_files = 'yoga/*.h'
-  public_header_files = File.join('ReactCommon/yoga', public_header_files) if ENV['INSTALL_YOGA_WITHOUT_PATH_OPTION']
   spec.public_header_files = public_header_files
 
   # Fabric must be able to access private headers (which should not be included in the umbrella header)
   all_header_files = 'yoga/**/*.h'
-  all_header_files = File.join('ReactCommon/yoga', all_header_files) if ENV['INSTALL_YOGA_WITHOUT_PATH_OPTION']
   spec.private_header_files = Dir.glob(all_header_files) - Dir.glob(public_header_files)
   spec.preserve_paths = [all_header_files]
 end
