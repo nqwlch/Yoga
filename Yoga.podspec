@@ -43,15 +43,15 @@ Pod::Spec.new do |spec|
 
   # Set this environment variable when *not* using the `:path` option to install the pod.
   # E.g. when publishing this spec to a spec repo.
-  source_files = 'yoga/**/*.{cpp,h}'
-  spec.source_files = source_files
+  csource_files = 'yoga/**/*.{cpp,h}'
+  spec.source_files = csource_files
   spec.header_mappings_dir = 'yoga'
 
-  public_header_files = 'yoga/*.h'
-  spec.public_header_files = public_header_files
+  cpublic_header_files = 'yoga/*.h'
+  spec.public_header_files = cpublic_header_files
 
   # Fabric must be able to access private headers (which should not be included in the umbrella header)
-  all_header_files = 'yoga/**/*.h'
-  spec.private_header_files = Dir.glob(all_header_files) - Dir.glob(public_header_files)
-  spec.preserve_paths = [all_header_files]
+  call_header_files = 'yoga/**/*.h'
+  spec.private_header_files = Dir.glob(call_header_files) - Dir.glob(cpublic_header_files)
+  spec.preserve_paths = [call_header_files]
 end
